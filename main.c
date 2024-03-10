@@ -49,6 +49,11 @@ void map_parsing(char *map_name, int *map_size)
 	printf("line size: %d\n", line_size);
 	while (map_line)
 	{
+
+		printf("line : %s\n", map_line);
+		printf("line len: %ld\n", ft_strlen(map_line));
+
+
 		(*map_size)++;
 		i = 0;
 		while (map_line[i])
