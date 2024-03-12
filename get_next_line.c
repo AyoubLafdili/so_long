@@ -24,7 +24,7 @@ static char	*buffer_update(char *buffer)
 		start++;
 	else if (buffer[start] == '\0')
 		return (free(buffer), NULL);
-	updated = ft_substr(buffer, start, ft_strlen(buffer) - start);
+	updated = ft_substr(buffer, start, ft_strlen(buffer, 0) - start);
 	free(buffer);
 	return (updated);
 }
@@ -61,12 +61,12 @@ static char	*read_lines(int fd, char *buffer)
 		{
 			free(buffer);
 			free(read_buffer);
-			return (NULL);
+			perror("Error\nRead Error");
+			exit(1);
 		}
 		else if (r_value == 0)
 			break ;
 		read_buffer[r_value] = '\0';
-		// printf("last char: <<%s>>\n", read_buffer);
 		buffer = str_join(buffer, read_buffer);
 		if (ft_strchr(read_buffer, '\n') != NULL)
 			break ;

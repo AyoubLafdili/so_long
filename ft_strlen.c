@@ -12,11 +12,23 @@
 
 #include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+size_t	strlen_char(const char *s)
 {
 	size_t	counter;
 
 	counter = 0;
+	while (s[counter] && s[counter] != '\r' && s[counter] != '\n')
+		counter++;
+	return (counter);
+}
+
+size_t	ft_strlen(const char *s, int flag)
+{
+	size_t	counter;
+
+	counter = 0;
+	if (flag == 1)
+		return (strlen_char(s));
 	while (s[counter])
 		counter++;
 	return (counter);

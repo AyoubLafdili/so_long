@@ -20,14 +20,14 @@ char	*str_join(const char *s1, const char *s2)
 
 	if (!s1)
 	{
-		constr = (char *)malloc((ft_strlen(s2) + 1) * sizeof(char));
+		constr = (char *)malloc((ft_strlen(s2, 0) + 1) * sizeof(char));
 		if (!constr)
 			return (NULL);
-		ft_strlcpy(constr, s2, ft_strlen(s2) + 1);
+		ft_strlcpy(constr, s2, ft_strlen(s2, 0) + 1);
 		return (constr);
 	}
-	flen = ft_strlen(s1);
-	slen = ft_strlen(s2);
+	flen = ft_strlen(s1, 0);
+	slen = ft_strlen(s2, 0);
 	constr = (char *) malloc((flen + slen + 1) * sizeof(char));
 	if (constr == NULL)
 		return (NULL);

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 11:08:24 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/28 11:12:02 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/04 12:12:48 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/27 15:22:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdio.h>
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	counter;
+	unsigned char		*ptr;
+	size_t				counter;
 
+	ptr = b;
 	counter = 0;
-	if (dstsize > 0)
+	while (counter < len)
 	{
-		while (src[counter] && counter < dstsize - 1)
-		{
-			dst[counter] = src[counter];
-			counter++;
-		}
-		dst[counter] = '\0';
+		ptr[counter] = (unsigned char)c;
+		counter++;
 	}
-	return (ft_strlen(src, 0));
+	return (ptr);
 }
