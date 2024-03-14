@@ -27,6 +27,8 @@ size_t	ft_strlen(const char *s, int flag)
 	size_t	counter;
 
 	counter = 0;
+	if (!s)
+		return (0);
 	if (flag == 1)
 		return (strlen_char(s));
 	while (s[counter])

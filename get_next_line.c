@@ -25,6 +25,9 @@ static char	*buffer_update(char *buffer)
 	else if (buffer[start] == '\0')
 		return (free(buffer), NULL);
 	updated = ft_substr(buffer, start, ft_strlen(buffer, 0) - start);
+	if(updated[0] == '\0')
+		return (free(buffer), free(updated), NULL);
+
 	free(buffer);
 	return (updated);
 }
