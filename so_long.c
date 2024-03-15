@@ -28,5 +28,7 @@ int main(int argc, char *argv[])
 	joined_lines = map_parsing(argv[1], &list.map_size, &list);
 	enclosed_walls(joined_lines, list.map_size, &list);
 	check_valid_path(list);
+	for(int i = 0; i < list.map_size; i++)
+		printf("%s\n", list.map[i]);
 	// _free(list.map, 'm');
 }

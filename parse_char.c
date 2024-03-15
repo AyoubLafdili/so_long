@@ -47,7 +47,7 @@ char *map_parsing(char *map_name, int *count_lines, t_flags *c_list)
 	joined_lines = NULL;
 	fd = open(map_name, O_RDONLY);
 	if (fd < 0)
-		error_hundler(NULL, NULL, "Open Error: No such file or directory\n");
+		error_hundler(NULL, NULL, "Open Error: No such file or directory!\n");
 	c_list->read_line = get_next_line(fd);
 	if (!c_list->read_line)
 		error_hundler(NULL, NULL, "Unable to Read Map!\n");
@@ -60,7 +60,7 @@ char *map_parsing(char *map_name, int *count_lines, t_flags *c_list)
 		(*count_lines)++;
 	}
 	if (c_list->e_flag != 1 || c_list->p_flag != 1 || c_list->c_flag == 0
-		|| c_list->f_flag < 1 || c_list->w_flag < 1)
+	 || c_list->w_flag < 1)
 		error_hundler(joined_lines, NULL, "Missing Some Essential Characters!\n");
 	return (joined_lines);
 }

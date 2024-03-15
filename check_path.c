@@ -15,13 +15,12 @@ void init_coordinate(char **map, char elem, int *x_elem, int *y_elem)
             {
                 *x_elem = x;
                 *y_elem = y;
-                break ;
+                return ;
             }
             x++;
         }
         y++;
     }
-    
 }
 
 void flood_fill(char **map, int y, int x,  int map_size, char new)
@@ -39,9 +38,16 @@ void flood_fill(char **map, int y, int x,  int map_size, char new)
 
 }
 
-void check_valid_path(t_flags vars)
+void check_valid_path(t_flags list)
 {
-    init_coordinate(vars.map, 'P', &vars.px, &vars.py);
-    init_coordinate(vars.map, 'E', &vars.ex, &vars.ey);
-    flood_fill(vars.map, vars.py, vars.px, vars.map_size, '9');
+    init_coordinate(list.map, 'P', &list.px, &list.py);
+    init_coordinate(list.map, 'E', &list.ex, &list.ey);
+    flood_fill(list.map, list.py, list.px, list.map_size, '9');
+
+    if (list.map[list.ey + 1][list.ex] != '9' && list.map[list.ey - 1][list.ex] != '9' 
+        && list.map[list.ey][list.ex + 1]!= '9' && list.map[list.ey][list.ex - 1]!= '9')
+    {
+        _free(list.map, 'm');
+        error_hundler(NULL, NULL, "Invalid Path!\n");
+    }
 }
