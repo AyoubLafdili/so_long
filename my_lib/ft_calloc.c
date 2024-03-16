@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/06 18:28:38 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/15 19:59:55 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdio.h>
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
-	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
-	}
-	if (flag == 'p')
-	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
-	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
+	void	*ptr;
+	size_t	tsize;
+
+	ptr = NULL;
+	tsize = count * size;
+	if (size > 0 && tsize / size != count)
+		return (NULL);
+	ptr = malloc(tsize);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, tsize);
+	return (ptr);
 }

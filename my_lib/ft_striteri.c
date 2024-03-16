@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/15 15:28:20 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/27 11:06:40 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	int	counter;
+
+	if (!s || !f)
+		return ;
+	counter = 0;
+	while (s[counter])
 	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
+		f(counter, &s[counter]);
+		counter++;
 	}
-	if (flag == 'p')
-	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
-	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
 }

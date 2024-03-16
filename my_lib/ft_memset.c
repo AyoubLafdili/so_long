@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/04 12:12:48 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/27 15:22:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	unsigned char		*ptr;
+	size_t				counter;
+
+	ptr = b;
+	counter = 0;
+	while (counter < len)
 	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
+		ptr[counter] = (unsigned char)c;
+		counter++;
 	}
-	if (flag == 'p')
-	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
-	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
+	return (ptr);
 }

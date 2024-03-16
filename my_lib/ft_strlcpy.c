@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/04 11:08:24 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/28 11:12:02 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	size_t	counter;
+
+	counter = 0;
+	if (dstsize > 0)
 	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
+		while (src[counter] && counter < dstsize - 1)
+		{
+			dst[counter] = src[counter];
+			counter++;
+		}
+		dst[counter] = '\0';
 	}
-	if (flag == 'p')
-	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
-	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
+	return (ft_strlen(src));
 }

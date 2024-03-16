@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   free_mem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2024/03/15 14:07:08 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/16 00:43:01 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+void	_free(char **to_free, char type)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	int	i;
+
+	i = 0;
+	if (!to_free)
+		return ;
+	if (type == 'm')
 	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
+		while (to_free[i])
+		{
+			free(to_free[i]);
+			i++;
+		}
+		free(to_free);
 	}
-	if (flag == 'p')
+	else
 	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
+		if (*to_free)
+			free(*to_free);
 	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
 }

@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 15:03:09 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/01 11:36:26 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/01 12:53:08 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/25 12:45:12 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-size_t	strlen_char(const char *s)
+int	ft_isalnum(int c)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (s[counter] && s[counter] != '\r' && s[counter] != '\n')
-		counter++;
-	return (counter);
-}
-
-size_t	ft_strlen(const char *s, int flag)
-{
-	size_t	counter;
-
-	counter = 0;
-	if (!s)
-		return (0);
-	if (flag == 1)
-		return (strlen_char(s));
-	while (s[counter])
-		counter++;
-	return (counter);
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_join.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 21:58:04 by alafdili          #+#    #+#             */
-/*   Updated: 2023/12/26 22:10:33 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/12 11:29:43 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/15 20:56:31 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-char	*str_join(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*constr;
 	int		flen;
@@ -20,14 +20,13 @@ char	*str_join(const char *s1, const char *s2)
 
 	if (!s1)
 	{
-		constr = (char *)malloc((ft_strlen(s2, 0) + 1) * sizeof(char));
+		constr = ft_strdup(s2);
 		if (!constr)
 			return (NULL);
-		ft_strlcpy(constr, s2, ft_strlen(s2, 0) + 1);
 		return (constr);
 	}
-	flen = ft_strlen(s1, 0);
-	slen = ft_strlen(s2, 0);
+	flen = ft_strlen(s1);
+	slen = ft_strlen(s2);
 	constr = (char *) malloc((flen + slen + 1) * sizeof(char));
 	if (constr == NULL)
 		return (NULL);

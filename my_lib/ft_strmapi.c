@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:43:43 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/15 14:44:07 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/26 10:37:00 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **in_line_map, char *msg, char flag)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	int		slen;
+	int		counter;
+	char	*nstr;
+
+	counter = 0;
+	if (!s || !f)
+		return (NULL);
+	slen = ft_strlen(s);
+	nstr = (char *)malloc(sizeof(char) * (slen + 1));
+	if (!nstr)
+		return (NULL);
+	while (s[counter])
 	{
-		if (in_line_map)
-			_free(in_line_map, 'm');
+		nstr[counter] = f(counter, s[counter]);
+		counter++;
 	}
-	if (flag == 'p')
-	{
-		if (*in_line_map)
-			_free(in_line_map, 'p');
-	}
-	write(1, "Error\n", 6);
-	write(1, msg, ft_strlen(msg));
-	exit(1);
+	nstr[counter] = '\0';
+	return (nstr);
 }

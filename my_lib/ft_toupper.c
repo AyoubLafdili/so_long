@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 20:08:11 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/27 16:43:30 by alafdili         ###   ########.fr       */
+/*   Created: 2023/11/01 16:05:25 by alafdili          #+#    #+#             */
+/*   Updated: 2023/11/01 16:05:28 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-char	*ft_strchr(const char *s, int c)
+int	ft_toupper(int c)
 {
-	size_t	counter;
-
-	counter = 0;
-	while (counter <= ft_strlen(s, 0))
-	{
-		if (s[counter] == (char)c)
-		{
-			return ((char *)&s[counter]);
-		}
-		counter++;
-	}
-	return (NULL);
+	if (c >= 97 && c <= 122)
+		return (c - 32);
+	return (c);
 }
