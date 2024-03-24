@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:07:48 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/16 00:34:22 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/22 01:07:18 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,29 @@ void	flood_fill(char **map, int y, int x, int map_size)
 	}
 }
 
-void	check_valid_path(t_flags list)
+void	check_valid_path(t_element *list)
 {
 	int	y;
 	int	x;
 
 	y = 0;
 	x = 0;
-	init_coordinate(list.map, 'P', &list.px, &list.py);
-	init_coordinate(list.map, 'E', &list.ex, &list.ey);
-	flood_fill(list.map_copy, list.py, list.px, list.map_size);
-	while (list.map_copy[y])
+	init_coordinate(list->map.map, 'P', &list->crd.px, &list->crd.py);
+	flood_fill(list->map.map_copy, list->crd.py, list->crd.px, list->map.map_y);
+	while (list->map.map_copy[y])
 	{
 		x = 0;
-		while (list.map_copy[y][x] && list.map_copy[y][x] != 'C'
-			&& list.map_copy[y][x] != 'E')
+		while (list->map.map_copy[y][x] && list->map.map_copy[y][x] != 'C'
+			&& list->map.map_copy[y][x] != 'E')
 			x++;
-		if ((list.map_copy[y][x] == 'C' || list.map_copy[y][x] == 'E')
-			&& list.map_copy[y][x])
+		if ((list->map.map_copy[y][x] == 'C' || list->map.map_copy[y][x] == 'E')
+			&& list->map.map_copy[y][x])
 		{
-			_free(list.map, 'm');
-			_free(list.map_copy, 'm');
+			_free(list->map.map, 'm');
+			_free(list->map.map_copy, 'm');
 			error_hundler(NULL, NULL, "Invalid Map Path to the Exit!\n", '0');
 		}
 		y++;
 	}
+	_free(list->map.map_copy, 'm');
 }
