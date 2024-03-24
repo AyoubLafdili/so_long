@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/23 23:29:56 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/24 00:39:46 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 # include <fcntl.h>
 # include <MLX42.h>
 
-#define opened_door "/Users/alafdili/Desktop/resized_assets/opened_door.png"
-#define closed_door "/Users/alafdili/Desktop/resized_assets/closed_door.png"
-// #define stage_one "/Users/alafdili/Desktop/resized_assets/stage_one.png"
-// #define stage_two "/Users/alafdili/Desktop/resized_assets/stage_two.png"
-#define player_png "/Users/alafdili/Desktop/resized_assets/player.png"
-// #define player_front "/Users/alafdili/Desktop/resized_assets/player_front.png"
-// #define player_left "/Users/alafdili/Desktop/resized_assets/player_left.png"
-// #define player_rigth "/Users/alafdili/Desktop/resized_assets/player_rigth.png"
-#define collectible "/Users/alafdili/Desktop/resized_assets/collectible.png"
-#define corner_wall "/Users/alafdili/Desktop/resized_assets/corner_wall.png"
-#define nested1 "/Users/alafdili/Desktop/resized_assets/nested_wall1.png"
-#define nested2 "/Users/alafdili/Desktop/resized_assets/nested3.png"
-#define floor_png "/Users/alafdili/Desktop/resized_assets/floor.png"
+#define opened_door "resized_assets/opened_door.png"
+#define closed_door "resized_assets/closed_door.png"
+// #define stage_one "resized_assets/stage_one.png"
+// #define stage_two "resized_assets/stage_two.png"
+#define player_png "resized_assets/player.png"
+// #define player_front "resized_assets/player_front.png"
+// #define player_left "resized_assets/player_left.png"
+// #define player_rigth "resized_assets/player_rigth.png"
+#define collectible "resized_assets/collectible.png"
+#define corner_wall "resized_assets/corner_wall.png"
+#define nested1 "resized_assets/nested_wall1.png"
+#define nested2 "resized_assets/nested3.png"
+#define floor_png "resized_assets/floor.png"
 
 # define pixels 50
 
