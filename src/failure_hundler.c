@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 18:15:23 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/23 23:55:40 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:37:18 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	failure_hundler(t_element to_free, int flag)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 7)
 	{
-		if (to_free.texture[i] == NULL || to_free.images[i] == NULL || flag == 1)
+		if (to_free.texture[i] == NULL || to_free.images[i] == NULL
+			|| flag == 1 || flag == 3)
 		{
 			i = 0;
 			while (i < 7)
@@ -29,8 +30,10 @@ void	failure_hundler(t_element to_free, int flag)
 				free(to_free.texture[i]);
 				i++;
 			}
-			error_hundler(NULL, to_free.map.map, "failure of mlx functions\n", '0');
+			if (flag != 3)
+				error_hundler(NULL, to_free.map.map, "mlx func failed", '0');
+			i = 0;
 		}
 		i++;
-	}	
+	}
 }

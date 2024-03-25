@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/24 15:35:33 by alafdili         ###   ########.fr       */
+/*   Created: 2023/12/05 21:18:11 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/24 15:21:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **other, char *msg, char flag)
+void	ft_putnbr(int nb, int *counter)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	if (nb == -2147483648)
 	{
-		if (other)
-			_free(other, 'm');
+		*counter += write(1, "-2147483648", 11);
 	}
-	if (flag == 'p')
+	else if (nb < 0)
 	{
-		if (*other)
-			_free(other, 'p');
+		*counter += write(1, "-", 1);
+		nb = -nb;
+		ft_putnbr(nb, counter);
 	}
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(msg, 1);
-	exit(1);
+	else if (nb >= 0 && nb <= 9)
+	{
+		nb += '0';
+		*counter += write(1, &nb, 1);
+	}
+	else
+	{
+		ft_putnbr(nb / 10, counter);
+		ft_putnbr(nb % 10, counter);
+	}
 }

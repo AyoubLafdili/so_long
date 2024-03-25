@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:49:05 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/15 20:01:37 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:28:12 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -72,4 +73,14 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+// ft_printf functions:
+int		ft_printf(const char *format, ...);
+void	ft_putaddress(unsigned long decimal, int *counter);
+void	ft_puthexa(unsigned int decimal, int *counter, short boll);
+void	ft_putunbr(unsigned int nb, int *counter);
+void	ft_putstr(const char *str, int *counter);
+void	ft_putchar(int ch, int *counter);
+void	ft_putnbr(int nb, int *counter);
+
 #endif

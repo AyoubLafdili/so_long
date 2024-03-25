@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_putaddress.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/24 15:35:33 by alafdili         ###   ########.fr       */
+/*   Created: 2023/12/07 14:43:37 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/24 15:21:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **other, char *msg, char flag)
+void	ft_putaddress(unsigned long decimal, int *counter)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
+	char	*hexadigit;
+
+	hexadigit = "0123456789abcdef";
+	if (decimal > 15)
 	{
-		if (other)
-			_free(other, 'm');
+		ft_putaddress(decimal / 16, counter);
+		ft_putchar(hexadigit[decimal % 16], counter);
 	}
-	if (flag == 'p')
-	{
-		if (*other)
-			_free(other, 'p');
-	}
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(msg, 1);
-	exit(1);
+	else
+		ft_putchar(hexadigit[decimal], counter);
 }

@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:03:35 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/21 21:32:03 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:38:26 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_width(char **map, int y_len, int x_len)
 	while (index < y_len - 1)
 	{
 		if (map[index][tmp] != '1')
-			error_hundler(NULL, map, "Map Not Enclose By Walls\n", 'm');
+			error_hundler(NULL, map, "Map Not Enclose By Walls", 'm');
 		else if (tmp == 0 && map[index][tmp] == '1' && index + 1 == y_len - 1)
 		{
 			tmp = x_len;
@@ -47,7 +47,7 @@ void	enclosed_walls(char *in_line_map, t_map *list)
 	while (list->map[tmp][i])
 	{
 		if (list->map[tmp][i] != '1')
-			error_hundler(in_line_map, list->map, "Map Needs Walls!\n", 'm');
+			error_hundler(in_line_map, list->map, "Map Needs Walls!", 'm');
 		else if (tmp == 0 && list->map[tmp][i] == '1' && !list->map[tmp][i + 1])
 		{
 			tmp = list->map_y - 1;

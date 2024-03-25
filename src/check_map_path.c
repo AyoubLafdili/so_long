@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:07:48 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/22 01:07:18 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:40:03 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	check_valid_path(t_element *list)
 		{
 			_free(list->map.map, 'm');
 			_free(list->map.map_copy, 'm');
-			error_hundler(NULL, NULL, "Invalid Map Path to the Exit!\n", '0');
+			error_hundler(NULL, NULL, "Invalid Map Path to the Exit!", '0');
 		}
 		y++;
 	}

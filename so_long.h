@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/24 00:39:46 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:39:53 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 # include <fcntl.h>
 # include <MLX42.h>
 
-#define opened_door "resized_assets/opened_door.png"
-#define closed_door "resized_assets/closed_door.png"
-// #define stage_one "resized_assets/stage_one.png"
-// #define stage_two "resized_assets/stage_two.png"
-#define player_png "resized_assets/player.png"
-// #define player_front "resized_assets/player_front.png"
-// #define player_left "resized_assets/player_left.png"
-// #define player_rigth "resized_assets/player_rigth.png"
-#define collectible "resized_assets/collectible.png"
-#define corner_wall "resized_assets/corner_wall.png"
-#define nested1 "resized_assets/nested_wall1.png"
-#define nested2 "resized_assets/nested3.png"
-#define floor_png "resized_assets/floor.png"
+#define opened_door "/Users/alafdili/Desktop/resized_assets/opened_door.png"
+#define closed_door "/Users/alafdili/Desktop/resized_assets/closed_door.png"
+// #define stage_one "/Users/alafdili/Desktop/resized_assets/stage_one.png"
+// #define stage_two "/Users/alafdili/Desktop/resized_assets/stage_two.png"
+#define player_png "/Users/alafdili/Desktop/resized_assets/player.png"
+// #define player_front "/Users/alafdili/Desktop/resized_assets/player_front.png"
+// #define player_left "/Users/alafdili/Desktop/resized_assets/player_left.png"
+// #define player_rigth "/Users/alafdili/Desktop/resized_assets/player_rigth.png"
+#define collectible "/Users/alafdili/Desktop/resized_assets/collectible.png"
+#define corner_wall "/Users/alafdili/Desktop/resized_assets/corner_wall.png"
+#define nested1 "/Users/alafdili/Desktop/resized_assets/nested_wall1.png"
+#define nested2 "/Users/alafdili/Desktop/resized_assets/nested3.png"
+#define floor_png "/Users/alafdili/Desktop/resized_assets/floor.png"
 
-# define pixels 50
+# define area 50
 
 typedef struct s_flags
 {
@@ -44,11 +44,12 @@ typedef struct s_flags
 	int		w_flag;
 }	t_flags;
 
-typedef struct 	s_coordinate
+typedef struct 	s_player
 {
 	int		px;
 	int		py;
-}	t_crd;
+	int		moves;
+}	t_player;
 
 typedef struct s_map
 {
@@ -60,16 +61,15 @@ typedef struct s_map
 }	t_map;
 
 
-
 typedef struct s_texture
 {
 	mlx_texture_t *c_wall;
-	mlx_texture_t *n_wall1;
-	mlx_texture_t *n_wall2;
+	mlx_texture_t *nwall1;
+	mlx_texture_t *nwall2;
 	mlx_texture_t *player;
 	mlx_texture_t *floor;
-	mlx_texture_t *o_door;
-	mlx_texture_t *c_door;
+	mlx_texture_t *odoor;
+	mlx_texture_t *cdoor;
 	mlx_texture_t *collect;
 }	t_texture;
 
@@ -78,10 +78,10 @@ typedef struct s_images
 	mlx_image_t *c_wall;
 	mlx_image_t *wall1;
 	mlx_image_t *wall2;
-	mlx_image_t *player;
+	mlx_image_t *gamer;
 	mlx_image_t *floor;
-	mlx_image_t *o_door;
-	mlx_image_t *c_door;
+	mlx_image_t *odoor;
+	mlx_image_t *cdoor;
 	mlx_image_t *clt;
 }	t_img;
 
@@ -92,7 +92,7 @@ typedef struct s_elements
 	mlx_texture_t	*texture[8];
 	mlx_image_t		*images[8];
 	t_flags			flags;
-	t_crd			crd;
+	t_player		crd;
 	t_map			map;
 	t_texture		txr;
 	t_img			img;

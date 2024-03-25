@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_hundler.c                                    :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:06:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/24 15:35:33 by alafdili         ###   ########.fr       */
+/*   Created: 2023/12/05 21:17:48 by alafdili          #+#    #+#             */
+/*   Updated: 2024/03/24 15:21:23 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	error_hundler(char *str, char **other, char *msg, char flag)
+void	ft_putchar(int ch, int *counter)
 {
-	if (str)
-		_free(&str, 'p');
-	if (flag == 'm')
-	{
-		if (other)
-			_free(other, 'm');
-	}
-	if (flag == 'p')
-	{
-		if (*other)
-			_free(other, 'p');
-	}
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(msg, 1);
-	exit(1);
+	*counter += write(1, &ch, 1);
 }
