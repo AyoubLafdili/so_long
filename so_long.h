@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/25 17:39:53 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/03/26 00:13:35 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@
 # include <fcntl.h>
 # include <MLX42.h>
 
-#define opened_door "/Users/alafdili/Desktop/resized_assets/opened_door.png"
-#define closed_door "/Users/alafdili/Desktop/resized_assets/closed_door.png"
-// #define stage_one "/Users/alafdili/Desktop/resized_assets/stage_one.png"
-// #define stage_two "/Users/alafdili/Desktop/resized_assets/stage_two.png"
-#define player_png "/Users/alafdili/Desktop/resized_assets/player.png"
-// #define player_front "/Users/alafdili/Desktop/resized_assets/player_front.png"
-// #define player_left "/Users/alafdili/Desktop/resized_assets/player_left.png"
-// #define player_rigth "/Users/alafdili/Desktop/resized_assets/player_rigth.png"
-#define collectible "/Users/alafdili/Desktop/resized_assets/collectible.png"
-#define corner_wall "/Users/alafdili/Desktop/resized_assets/corner_wall.png"
-#define nested1 "/Users/alafdili/Desktop/resized_assets/nested_wall1.png"
-#define nested2 "/Users/alafdili/Desktop/resized_assets/nested3.png"
-#define floor_png "/Users/alafdili/Desktop/resized_assets/floor.png"
+#define opened_door "textures/opened_door.png"
+#define closed_door "textures/closed_door.png"
+// #define stage_one "textures/stage_one.png"
+// #define stage_two "textures/stage_two.png"
+#define player_png "textures/player.png"
+// #define player_front "textures/player_front.png"
+// #define player_left "textures/player_left.png"
+// #define player_rigth "textures/player_rigth.png"
+#define collectible "textures/collectible.png"
+#define corner_wall "textures/corner_wall.png"
+#define nested1 "textures/nested_wall1.png"
+#define nested2 "textures/nested3.png"
+#define floor_png "textures/floor.png"
 
 # define area 50
 
