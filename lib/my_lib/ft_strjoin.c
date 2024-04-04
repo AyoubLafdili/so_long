@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:29:43 by alafdili          #+#    #+#             */
-/*   Updated: 2024/03/15 20:56:31 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:09:32 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	int		flen;
 	int		slen;
 
-	if (!s1)
+	if (s1 == NULL)
 	{
 		constr = ft_strdup(s2);
 		if (!constr)

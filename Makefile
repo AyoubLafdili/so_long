@@ -1,36 +1,58 @@
 NAME = so_long
+B_NAME = so_long_bonus
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall
 COMPILE = cc
-
 MY_LIB = $(LIB_DIR)/libft.a
+M_DIR = mandatory/src
+B_DIR = bonus/src
 LIB_DIR = lib/my_lib
 MLX_DIR = lib/MLX42
 MLX_LIB = $(MLX_DIR)/libmlx42.a -L"/Users/alafdili/.brew/opt/glfw/lib/" -lglfw \
 		-framework Cocoa -framework OpenGL -framework IOKit
 
-HEADERS = -I. -Ilib/my_lib -Ilib/MLX42/include/MLX42
+M_HEADERS = -I. -Ilib/my_lib -Ilib/MLX42/include/MLX42
+B_HEADERS = -Ibonus -Ilib/my_lib -Ilib/MLX42/include/MLX42
 
-SRC = src/free_mem.c src/error_hundler.c src/so_long.c src/parse_char.c src/parse_walls.c \
-	src/check_map_path.c src/strlen_char.c src/failure_hundler.c src/mlx_init.c
+M_SRC = $(M_DIR)/free_mem.c $(M_DIR)/err_alert.c $(M_DIR)/so_long.c $(M_DIR)/parse_char.c $(M_DIR)/parse_walls.c \
+		$(M_DIR)/window_hundler.c $(M_DIR)/check_map_path.c $(M_DIR)/strlen_char.c $(M_DIR)/mlx_failure.c \
+		$(M_DIR)/init_objects.c $(M_DIR)/player_moves.c $(M_DIR)/display_images.c $(M_DIR)/check_collectible.c
 
-SRC_OBJECT = $(SRC:.c=.o)
+B_SRC = $(B_DIR)/check_collectible_bonus.c $(B_DIR)/display_images_bonus.c $(B_DIR)/free_mem_bonus.c \
+		$(B_DIR)/init_objects_bonus.c $(B_DIR)/parse_char_bonus.c $(B_DIR)/player_moves_bonus.c \
+		$(B_DIR)/window_hundler_bonus.c $(B_DIR)/check_map_path_bonus.c $(B_DIR)/err_alert_bonus.c \
+		$(B_DIR)/mlx_failure_bonus.c $(B_DIR)/parse_walls_bonus.c $(B_DIR)/so_long_bonus.c \
+		$(B_DIR)/strlen_char_bonus.c $(B_DIR)//add_to_list.c $(B_DIR)/list_clear.c $(B_DIR)/list_init.c
 
-%.o:%.c so_long.h
-	$(COMPILE) $(FLAGS) $(HEADERS) -o $@ -c $<
+M_OBJ = $(M_SRC:.c=.o)
+B_OBJ = $(B_SRC:.c=.o)
 
 all:$(NAME)
 
-$(NAME):$(SRC_OBJECT) $(SRC_LIB)
+$(B_DIR)/%.o: $(B_DIR)/%.c bonus/so_long_bonus.h
+	$(COMPILE) $(FLAGS) $(B_HEADERS) -o $@ -c $<
+
+$(M_DIR)/%.o:$(M_DIR)/%.c so_long.h
+	$(COMPILE) $(FLAGS) $(M_HEADERS) -o $@ -c $<
+
+
+$(B_NAME): $(B_OBJ)
 	make -C $(LIB_DIR)
-	$(COMPILE) $(FLAGS) -o $(NAME) $(SRC_OBJECT) $(MY_LIB) $(MLX_LIB)
+	$(COMPILE) $(FLAGS) -o $(B_NAME) $(B_OBJ) $(MY_LIB) $(MLX_LIB)
+
+$(NAME):$(M_OBJ)
+	make -C $(LIB_DIR)
+	$(COMPILE) $(FLAGS) -o $(NAME) $(M_OBJ) $(MY_LIB) $(MLX_LIB)
+
+bonus: $(B_NAME)
+
 
 clean:
 	make -C $(LIB_DIR) clean
-	rm -rf $(SRC_OBJECT)
+	rm -rf $(M_OBJ) $(B_OBJ)
 
 fclean: clean
 	make -C $(LIB_DIR) fclean
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(B_NAME)
 
 re: fclean all
