@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:40:52 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/01 12:13:00 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:43:19 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	window_hundeler(t_element *list)
 
 	x = list->map.map_x;
 	y = list->map.map_y;
-	list->mlx = mlx_init(x * area, y * area, "so_long", false);
+	list->mlx = mlx_init(x * SIZE, y * SIZE, "so_long", false);
 	if (!list->mlx)
 		err_alert(NULL, list->map.map, "Window Set Up Eroor", '0');
 	init_obj(list);

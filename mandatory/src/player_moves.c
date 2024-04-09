@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:23:09 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/01 12:08:15 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:43:19 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	apply_move(t_element *var, int y, int x, int e[2])
 	int			px;
 	int			py;
 
-	p_img = var->images[var->pdr];
-	odoor = var->img.odoor;
+	p_img = var->img[var->pdr];
+	odoor = var->img[OD];
 	mlx = var->mlx;
 	px = var->crd.px;
 	py = var->crd.py;
 	ft_printf("moves: %d\n", ++var->crd.moves);
 	if (var->map.map[y][x] == 'C' && --var->flags.c_flag == 0)
-		if (mlx_image_to_window(mlx, odoor, e[0] * area, e[1] * area) == -1)
+		if (mlx_image_to_window(mlx, odoor, e[0] * SIZE, e[1] * SIZE) == -1)
 			mlx_failure(*var, 1);
-	if (mlx_image_to_window(mlx, var->img.floor, px * area, py * area) == -1
-		|| mlx_image_to_window(mlx, p_img, x * area, y * area) == -1)
+	if (mlx_image_to_window(mlx, var->img[FL], px * SIZE, py * SIZE) == -1
+		|| mlx_image_to_window(mlx, p_img, x * SIZE, y * SIZE) == -1)
 		mlx_failure(*var, 1);
 	var->map.map[py][px] = '0';
 	var->map.map[y][x] = 'P';
@@ -60,22 +60,22 @@ void	check_mov_action(t_element *action, char dir)
 {
 	if (dir == 'u')
 	{
-		action->pdr = 10;
+		action->pdr = PU;
 		move_hundler(action, action->crd.py - 1, action->crd.px);
 	}
 	else if (dir == 'd')
 	{
-		action->pdr = 0;
+		action->pdr = P;
 		move_hundler(action, action->crd.py + 1, action->crd.px);
 	}
 	else if (dir == 'r')
 	{
-		action->pdr = 12;
+		action->pdr = PR;
 		move_hundler(action, action->crd.py, action->crd.px + 1);
 	}
 	else if (dir == 'l')
 	{
-		action->pdr = 11;
+		action->pdr = PL;
 		move_hundler(action, action->crd.py, action->crd.px - 1);
 	}
 }

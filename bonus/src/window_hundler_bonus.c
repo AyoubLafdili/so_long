@@ -6,110 +6,83 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:36:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/04 13:44:36 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:43:19 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void back(t_element *params, t_enemy *_enemy)
+void	take_action(t_element *vars, t_enemy *_enemy, int dir, mlx_t *mlx)
 {
-	int ix;
-	int iy;
+	int	iy;
+	int	win_x;
+	int	win_y;
 
-	ix = _enemy->x;
 	iy = _enemy->y;
-	if (params->map.map[iy][ix - 1] == '1' || params->map.map[iy][ix - 1] == 'I'
-		|| params->map.map[iy][ix - 1] == 'E' || params->map.map[iy][ix - 1] == 'C')
+	win_x = _enemy->x * SIZE;
+	win_y = iy * SIZE;
+	if (vars->map.map[iy][dir] == '1' || vars->map.map[iy][dir] == 'E'
+		|| vars->map.map[iy][dir] == 'C')
 		return ;
-	else if (params->map.map[iy][ix - 1] == 'P')
+	else if (vars->map.map[iy][dir] == 'P')
+		ft_terminate(*vars, "\033[1;31mYOU LOSE\033[1;0m");
+	else if (vars->map.map[iy][dir] == '0')
 	{
-		list_clear(params->head);
-		_free(params->map.map, 'm');
-		mlx_failure(*params, 3);
-		mlx_terminate(params->mlx);
-		ft_printf("\033[1;31mYOU LOSE\n\033[1;0m");
-		exit(0);
-	}
-	else if (params->map.map[iy][ix - 1] == '0')
-	{
-		mlx_image_to_window(params->mlx, params->images[4], ix * area, iy * area);
-		mlx_image_to_window(params->mlx, params->images[13], (ix - 1) * area, iy * area);
-		params->map.map[iy][ix] = '0';
-		params->map.map[iy][ix - 1] = 'I';
-		_enemy->x--;
+		if (mlx_image_to_window(mlx, vars->img[FL], win_x, win_y) == -1)
+			mlx_failure(*vars, "mlx func failed", 1);
+		if (mlx_image_to_window(mlx, vars->img[I], dir * SIZE, win_y) == -1)
+			mlx_failure(*vars, "mlx func failed", 1);
+		vars->map.map[iy][_enemy->x] = '0';
+		vars->map.map[iy][dir] = 'I';
+		if (dir < _enemy->x)
+			_enemy->x--;
+		else
+			_enemy->x++;
 	}
 }
 
-void enemy_action(t_element *params, t_enemy *_enemy)
+void	move_enemy(void *param)
 {
-	int ix;
-	int iy;
-
-	ix = _enemy->x;
-	iy = _enemy->y;
-	if (params->map.map[iy][ix + 1] == '1' || params->map.map[iy][ix + 1] == 'I'
-		|| params->map.map[iy][ix + 1] == 'E' || params->map.map[iy][ix + 1] == 'C')
-		return ;
-	else if (params->map.map[iy][ix + 1] == 'P')
-	{
-		list_clear(params->head);
-		_free(params->map.map, 'm');
-		mlx_failure(*params, 3);
-		mlx_terminate(params->mlx);
-		ft_printf("\033[1;31mYOU LOSE\n\033[1;0m");
-		exit(0);
-	}
-	else if (params->map.map[iy][ix + 1] == '0')
-	{
-		mlx_image_to_window(params->mlx, params->images[4], ix * area, iy * area);
-		mlx_image_to_window(params->mlx, params->images[13], (ix + 1) * area, iy * area);
-		params->map.map[iy][ix] = '0';
-		params->map.map[iy][ix + 1] = 'I';
-		_enemy->x++;
-	}
-}
-void move_enemy(void *param)
-{
-	t_enemy	*first;
-	t_element *var;
-	static int i = 0;
-	static int timer = 0;
+	t_enemy		*first;
+	t_element	*var;
+	static int	i;
+	static int	counter;
 
 	var = param;
 	first = var->head;
-	while (timer % 50 == 0 && first != NULL)
+	while (counter % 50 == 0 && first != NULL)
 	{
-		if (i % 2 == 0)
-			enemy_action(var, first);
+		if (i == 0)
+			take_action(var, first, first->x + 1, var->mlx);
 		else
-			back(var, first);
+			take_action(var, first, first->x - 1, var->mlx);
 		if (i == 0 && first->next == NULL)
 			i = 1;
 		else if (i == 1 && first->next == NULL)
 			i = 0;
 		first = first->next;
 	}
-	timer++;
+	counter++;
 }
 
 void	animate_door(void *param)
 {
 	static int	i = 0;
+	static int	counter = 0;
 	t_element	*vars;
 	int			ex;
 	int			ey;
 
 	vars = param;
-	ex = vars->crd.ex * area;
-	ey = vars->crd.ey * area;
-	if (vars->flags.c_flag == 0 && vars->counter % 10 == 0 && i < 3)
+	ex = vars->crd.ex * SIZE;
+	ey = vars->crd.ey * SIZE;
+	if (vars->flags.c_flag == 0 && counter % 10 == 0 && i < 3)
 	{
-		if (mlx_image_to_window(vars->mlx, vars->images[i + 7], ex, ey) == -1)
-			mlx_failure(*vars, 1);
+		if (mlx_image_to_window(vars->mlx, vars->img[i + 5], ex, ey) == -1)
+			mlx_failure(*vars, "mlx func failed", 1);
 		i++;
 	}
-	vars->counter++;
+	counter++;
 }
 
 void	close_callback(void *param)
@@ -117,25 +90,28 @@ void	close_callback(void *param)
 	t_element	*close;
 
 	close = param;
-	mlx_failure(*close, 3);
+	mlx_failure(*close, NULL, 3);
 }
 
-void	window_hundeler(t_element *list)
+void	window_hundeler(t_element *vars)
 {
 	int	y;
 	int	x;
 
-	x = list->map.map_x;
-	y = list->map.map_y;
-	list->mlx = mlx_init(x * area, y * area, "so_long", false);
-	if (!list->mlx)
-		err_alert(NULL, list->map.map, "Window Set Up Eroor", '0');
-	init_obj(list);
-	put_image(list, list->mlx, 0);
-	mlx_put_string(list->mlx, "MOVES: 0", 50, 13);
-	mlx_key_hook(list->mlx, move_player, list);
-	mlx_loop_hook(list->mlx, animate_door, list);
-	mlx_loop_hook(list->mlx, move_enemy, list);
-	mlx_close_hook(list->mlx, close_callback, list);
-	mlx_loop(list->mlx);
+	x = vars->map.map_x;
+	y = vars->map.map_y;
+	vars->mlx = mlx_init(x * SIZE, y * SIZE, "so_long", false);
+	if (!vars->mlx)
+	{
+		list_clear(vars->head);
+		err_alert(NULL, vars->map.map, "Window Set Up Eroor", '0');
+	}
+	init_obj(vars);
+	put_image(*vars);
+	string_to_window(vars);
+	mlx_key_hook(vars->mlx, move_player, vars);
+	mlx_loop_hook(vars->mlx, animate_door, vars);
+	mlx_loop_hook(vars->mlx, move_enemy, vars);
+	mlx_close_hook(vars->mlx, close_callback, vars);
+	mlx_loop(vars->mlx);
 }

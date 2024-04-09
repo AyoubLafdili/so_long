@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:36:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/04 13:41:16 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:12:29 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ int	main(int argc, char *argv[])
 		err_alert(NULL, NULL, "Review Your Input Arguments!", '0');
 	check_map_name(argv[1]);
 	joined_lines = map_parsing(argv[1], &list);
-	enclosed_walls(joined_lines, &list.map);
-	list_init(&list);
+	enclosed_walls(joined_lines, &list);
 	check_valid_path(&list);
+	list_init(&list);
 	window_hundeler(&list);
+	list_clear(list.head);
 	_free(list.map.map, 'm');
 	mlx_terminate(list.mlx);
 	return (0);

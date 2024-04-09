@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:36 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/01 13:35:19 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:35:35 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int	main(int argc, char *argv[])
 	char		*joined_lines;
 
 	atexit(fun);
-	// ft_memset(&list, 0, sizeof(t_element));
-	list = (t_element){};
+	ft_memset(&list, 0, sizeof(t_element));
 	if (argc != 2)
 		err_alert(NULL, NULL, "Review Your Input Arguments!", '0');
 	check_map_name(argv[1]);

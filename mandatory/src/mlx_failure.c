@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:28:06 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/01 12:20:51 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:34:53 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@ void	mlx_failure(t_element to_free, int flag)
 	int	i;
 
 	i = 0;
-	while (i < 13)
+	while (i < 12)
 	{
-		if (to_free.texture[i] == NULL || to_free.images[i] == NULL
-			|| flag == 1 || flag == 3)
+		if (to_free.img[i] == NULL || flag == 1 || flag == 3)
 		{
 			i = 0;
-			while (i < 13)
+			while (i < 12)
 			{
-				if (to_free.images[i])
-					mlx_delete_image(to_free.mlx, to_free.images[i]);
-				mlx_delete_texture(to_free.texture[i]);
+				if (to_free.img[i])
+					mlx_delete_image(to_free.mlx, to_free.img[i]);
+				if (to_free.txr[i])
+					mlx_delete_texture(to_free.txr[i]);
 				i++;
 			}
-			if (flag != 3)
+			if (flag != 3 && to_free.mlx)
 			{
-				if (to_free.mlx)
-					mlx_terminate(to_free.mlx);
+				mlx_terminate(to_free.mlx);
 				err_alert(NULL, to_free.map.map, "mlx func failed", '0');
 			}
 		}

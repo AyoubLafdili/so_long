@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:50:28 by alafdili          #+#    #+#             */
-/*   Updated: 2023/11/26 12:56:36 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/06 18:41:26 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	**wlen(char **str, const char *s, char c)
 				c1++;
 			str[c2] = (char *)malloc(sizeof(char) * (c1 + 1));
 			if (str[c2] == NULL)
-				return (mfree(str, c2));
+				return (mfree (str, c2));
 			ft_strlcpy(str[c2], s, c1 + 1);
 			c2++;
 		}

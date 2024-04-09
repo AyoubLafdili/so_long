@@ -6,13 +6,13 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:35:47 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/01 17:35:09 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 00:30:46 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	check_width(char **map, int y_len, int x_len)
+void	check_width(t_element *var, char *merged, int y_len, int x_len)
 {
 	int	index;
 	int	tmp;
@@ -21,9 +21,10 @@ void	check_width(char **map, int y_len, int x_len)
 	tmp = 0;
 	while (index < y_len - 1)
 	{
-		if (map[index][tmp] != '1')
-			err_alert(NULL, map, "Map Not Enclose By Walls", 'm');
-		else if (tmp == 0 && map[index][tmp] == '1' && index + 1 == y_len - 1)
+		if (var->map.map[index][tmp] != '1')
+			err_alert(merged, var->map.map, "Map Not Enclose By Walls", 'm');
+		else if (tmp == 0 && var->map.map[index][tmp] == '1'
+			&& index + 1 == y_len - 1)
 		{
 			tmp = x_len;
 			index = 1;
@@ -31,33 +32,34 @@ void	check_width(char **map, int y_len, int x_len)
 		else
 			index++;
 	}
+	var->map.map_cp = ft_split(merged, '\n');
+	if (!var->map.map_cp)
+		err_alert(merged, var->map.map, "Cannot Split Map Copy", 'm');
 }
 
-void	enclosed_walls(char *in_line_map, t_map *list)
+void	enclosed_walls(char *merged, t_element *var)
 {
 	int	i;
 	int	tmp;
 
 	tmp = 0;
 	i = 0;
-	list->map = ft_split(in_line_map, '\n');
-	if (!list->map)
-		err_alert(in_line_map, NULL, "Cannot Split Map", '0');
-	while (list->map[tmp][i])
+	var->map.map = ft_split(merged, '\n');
+	if (!var->map.map)
+		err_alert(merged, NULL, "Cannot Split Map", '0');
+	while (var->map.map[tmp][i])
 	{
-		if (list->map[tmp][i] != '1')
-			err_alert(in_line_map, list->map, "Map Needs Walls!", 'm');
-		else if (tmp == 0 && list->map[tmp][i] == '1' && !list->map[tmp][i + 1])
+		if (var->map.map[tmp][i] != '1')
+			err_alert(merged, var->map.map, "Map Needs Walls!", 'm');
+		else if (tmp == 0 && var->map.map[tmp][i] == '1'
+			&& !var->map.map[tmp][i + 1])
 		{
-			tmp = list->map_y - 1;
+			tmp = var->map.map_y - 1;
 			i = 0;
 		}
 		else
 			i++;
 	}
-	check_width(list->map, list->map_y, list->map_x - 1);
-	list->map_cp = ft_split(in_line_map, '\n');
-	if (!list->map_cp)
-		err_alert(in_line_map, NULL, "Cannot Split Map Copy", '0');
-	_free(&in_line_map, 'p');
+	check_width(var, merged, var->map.map_y, var->map.map_x - 1);
+	_free(&merged, 'p');
 }

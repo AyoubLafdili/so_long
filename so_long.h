@@ -6,36 +6,48 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/03 10:36:04 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:46:09 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "libft.h"
+# include "libft.h"
 # include <stdio.h> 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <MLX42.h>
-            
-#define opened_door "textures/opened_door.png"
-#define closed_door "textures/closed_door.png"
-#define stage_one "textures/stage_one.png"
-#define stage_two "textures/stage_two.png"    
-#define player_png "textures/player.png"
-#define player_front "textures/forward.png"
-#define player_left "textures/left.png"
-#define player_rigth "textures/right.png"  
-#define collectible "textures/collectible.png"   
-#define corner_wall "textures/c_wall_copy.png"   
-#define nested1 "textures/tree.png"
-#define nested2 "textures/_floor.png"
-#define floor_png "textures/new_floor.png" 
-   
-# define area 50
-  
+
+# define OPENED_DOOR "textures/opened_door.png"
+# define CLOSED_DOOR "textures/closed_door.png"
+# define STAGE_ONE "textures/stage_one.png"
+# define STAGE_TWO "textures/stage_two.png"    
+# define PLAYER "textures/player.png"
+# define PLAYER_UP "textures/forward.png"
+# define PLAYER_LEFT "textures/left.png"
+# define PLAYER_RIGHT "textures/right.png"  
+# define COLLECTEBLE "textures/collectible.png"   
+# define CORNER_WALL "textures/c_wall.png"   
+# define NESTED "textures/nested.png"
+# define FLOOR "textures/floor.png" 
+
+# define P 0
+# define PU 1
+# define PR 2
+# define PL 3
+# define CD 4
+# define S1 5
+# define S2 6
+# define OD 7
+# define CW 8
+# define NW 9
+# define FL 10
+# define C 11
+
+# define SIZE 50
+
 typedef struct s_flags
 {
 	int		p_flag;
@@ -43,8 +55,8 @@ typedef struct s_flags
 	int		c_flag;
 	int		w_flag;
 }	t_flags;
-   
-typedef struct 	s_player
+
+typedef struct s_player
 {
 	int		px;
 	int		py;
@@ -62,53 +74,24 @@ typedef struct s_map
 	char	**map_cp;
 }	t_map;
 
-typedef struct s_texture
-{
-	mlx_texture_t *c_wall;
-	mlx_texture_t *nwall1;
-	mlx_texture_t *nwall2;
-	mlx_texture_t *player;
-	mlx_texture_t *p_up;
-	mlx_texture_t *_rigth;
-	mlx_texture_t *p_left;
-	mlx_texture_t *floor;
-	mlx_texture_t *odoor;
-	mlx_texture_t *cdoor;
-	mlx_texture_t *door1;
-	mlx_texture_t *door2;
-	mlx_texture_t *collect;
-}	t_texture;
-
-typedef struct s_images
-{
-	mlx_image_t *c_wall;
-	mlx_image_t *wall1;
-	mlx_image_t *wall2;
-	mlx_image_t *gamer;
-	mlx_image_t *p_up;
-	mlx_image_t *_rigth;
-	mlx_image_t *p_left;
-	mlx_image_t *floor;
-	mlx_image_t *odoor;
-	mlx_image_t *cdoor;
-	mlx_image_t *door1;
-	mlx_image_t *door2;
-	mlx_image_t *clt;
-}	t_img;
-
-
 typedef struct s_elements
 {
 	mlx_t			*mlx;
-	mlx_texture_t	*texture[13];
-	mlx_image_t		*images[13];
+	mlx_texture_t	*txr[12];
+	mlx_image_t		*img[12];
 	t_flags			flags;
 	t_player		crd;
 	t_map			map;
-	t_texture		txr;
-	t_img			img;
 	int				pdr;
 }	t_element;
+
+typedef struct s_norm
+{
+	char	*str;
+	char	**other;
+	char	*msg;
+	char	flag;
+}	t_norm;
 
 void	mlx_failure(t_element to_free, int flag);
 void	err_alert(char *str, char **in_Line_map, char *msg, char flag);

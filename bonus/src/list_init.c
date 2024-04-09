@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 22:42:29 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/04 13:33:32 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:00:48 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	list_init(t_element *init)
 			if (init->map.map[y][x] == 'I' && init->map.map[y][x + 1] != 'I'
 				&& init->map.map[y][x + 1] != '\0')
 			{
-				add_to_list(&init->head, x, y);
+				if (add_to_list(&init->head, x, y))
+					err_alert(NULL, init->map.map, "Malloc failed list!", 'm');
 				x++;
 			}
 			else

@@ -1,7 +1,7 @@
 NAME = so_long
 B_NAME = so_long_bonus
 
-FLAGS = -Wall
+FLAGS = -Wall -Wextra -Werror
 COMPILE = cc
 MY_LIB = $(LIB_DIR)/libft.a
 M_DIR = mandatory/src
@@ -22,7 +22,8 @@ B_SRC = $(B_DIR)/check_collectible_bonus.c $(B_DIR)/display_images_bonus.c $(B_D
 		$(B_DIR)/init_objects_bonus.c $(B_DIR)/parse_char_bonus.c $(B_DIR)/player_moves_bonus.c \
 		$(B_DIR)/window_hundler_bonus.c $(B_DIR)/check_map_path_bonus.c $(B_DIR)/err_alert_bonus.c \
 		$(B_DIR)/mlx_failure_bonus.c $(B_DIR)/parse_walls_bonus.c $(B_DIR)/so_long_bonus.c \
-		$(B_DIR)/strlen_char_bonus.c $(B_DIR)//add_to_list.c $(B_DIR)/list_clear.c $(B_DIR)/list_init.c
+		$(B_DIR)/strlen_char_bonus.c $(B_DIR)/add_to_list.c $(B_DIR)/list_clear.c $(B_DIR)/list_init.c\
+		$(B_DIR)/display_string_bonus.c $(B_DIR)/ft_terminate.c
 
 M_OBJ = $(M_SRC:.c=.o)
 B_OBJ = $(B_SRC:.c=.o)
@@ -45,7 +46,6 @@ $(NAME):$(M_OBJ)
 	$(COMPILE) $(FLAGS) -o $(NAME) $(M_OBJ) $(MY_LIB) $(MLX_LIB)
 
 bonus: $(B_NAME)
-
 
 clean:
 	make -C $(LIB_DIR) clean

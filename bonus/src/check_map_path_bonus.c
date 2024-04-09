@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:33:36 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/04 13:48:34 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/04 22:42:11 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_coordinate(char **map, char elem, int *x_elem, int *y_elem)
 	}
 }
 
-void	flood_fill(char **map, int y, int x, int map_size)
+void	flood_fill(char **map, int y, int x)
 {
 	if (map[y][x] == 'V' || map[y][x] == '1' || map[y][x] == 'I')
 		return ;
@@ -44,10 +44,10 @@ void	flood_fill(char **map, int y, int x, int map_size)
 	else if (map[y][x] != '1')
 	{
 		map[y][x] = 'V';
-		flood_fill(map, y - 1, x, map_size);
-		flood_fill(map, y + 1, x, map_size);
-		flood_fill(map, y, x - 1, map_size);
-		flood_fill(map, y, x + 1, map_size);
+		flood_fill(map, y - 1, x);
+		flood_fill(map, y + 1, x);
+		flood_fill(map, y, x - 1);
+		flood_fill(map, y, x + 1);
 	}
 }
 
@@ -60,7 +60,7 @@ void	check_valid_path(t_element *list)
 	x = 0;
 	init_coordinate(list->map.map, 'P', &list->crd.px, &list->crd.py);
 	init_coordinate(list->map.map, 'E', &list->crd.ex, &list->crd.ey);
-	flood_fill(list->map.map_cp, list->crd.py, list->crd.px, list->map.map_y);
+	flood_fill(list->map.map_cp, list->crd.py, list->crd.px);
 	while (list->map.map_cp[y])
 	{
 		x = 0;

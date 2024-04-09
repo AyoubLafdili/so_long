@@ -6,15 +6,15 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 14:36:04 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/03 18:47:35 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 00:31:27 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void list_clear(t_enemy *list)
+void	list_clear(t_enemy *list)
 {
-	t_enemy *tmp;
+	t_enemy	*tmp;
 
 	if (!list)
 		return ;
@@ -23,5 +23,5 @@ void list_clear(t_enemy *list)
 		tmp = list;
 		list = list->next;
 		free(tmp);
-	}	
+	}
 }

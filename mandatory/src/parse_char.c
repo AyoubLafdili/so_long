@@ -6,11 +6,20 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:03:19 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/02 16:00:05 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/09 03:35:10 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	avoid_norm(int fd, t_norm compound)
+{
+	t_norm	vars;
+
+	vars = compound;
+	close(fd);
+	err_alert(vars.str, vars.other, vars.msg, vars.flag);
+}
 
 void	calc_map_elem(char elem, t_flags *calc_elem)
 {
@@ -24,7 +33,7 @@ void	calc_map_elem(char elem, t_flags *calc_elem)
 		calc_elem->w_flag++;
 }
 
-char	*check_valid_char(t_element *c_list, char *to_join)
+char	*check_valid_char(t_element *c_list, char *to_join, int fd)
 {
 	char	*line;
 	int		i;
@@ -34,8 +43,8 @@ char	*check_valid_char(t_element *c_list, char *to_join)
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != 'P' && line[i] != 'E' && line[i] != 'C'
-			&& line[i] != '0' && line[i] != '1')
-			err_alert(line, &to_join, "Unexpected Characters!", 'p');
+			&& line[i] != '0' && line[i] != '1' && line[i] != 'I')
+			avoid_norm(fd, (t_norm){line, &to_join, "Unexpected Chars", 'p'});
 		else
 		{
 			calc_map_elem(line[i], &c_list->flags);
@@ -43,10 +52,10 @@ char	*check_valid_char(t_element *c_list, char *to_join)
 		}
 	}
 	if (i != c_list->map.map_x)
-		err_alert(line, &to_join, "Shape Correction required!", 'p');
+		avoid_norm(fd, (t_norm){line, &to_join, "Adjust Shape!", 'p'});
 	to_join = ft_strjoin(to_join, line);
 	if (!to_join)
-		err_alert(line, NULL, "Joining Failed!", '0');
+		avoid_norm(fd, (t_norm){line, &to_join, "Joining Failed!", 'p'});
 	free(line);
 	return (to_join);
 }
@@ -62,17 +71,20 @@ char	*map_parsing(char *map_name, t_element *elem)
 		err_alert(NULL, NULL, "Open Error: No such file", '0');
 	elem->map.read_line = get_next_line(fd);
 	if (!elem->map.read_line)
-		err_alert(NULL, NULL, "Unable to Read Map!", '0');
+		avoid_norm(fd, (t_norm){NULL, NULL, "Unable to Read Map!", '0'});
 	elem->map.map_x = strlen_char(elem->map.read_line);
 	while (elem->map.read_line)
 	{
-		j_lines = check_valid_char(elem, j_lines);
+		j_lines = check_valid_char(elem, j_lines, fd);
 		elem->map.read_line = NULL;
 		elem->map.read_line = get_next_line(fd);
 		elem->map.map_y++;
 	}
 	if (elem->flags.e_flag != 1 || elem->flags.p_flag != 1
 		|| elem->flags.c_flag == 0)
-		err_alert(j_lines, NULL, "Essential Chars Missing!", '0');
+		avoid_norm(fd, (t_norm){NULL, NULL, "Essential Chars Missing!", '0'});
+	if (j_lines[((elem->map.map_x + 1) * elem->map.map_y) - 1] == '\n')
+		avoid_norm(fd, (t_norm){j_lines, NULL, "Unexpected Chars", '0'});
+	close(fd);
 	return (j_lines);
 }
