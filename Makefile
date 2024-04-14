@@ -11,7 +11,7 @@ MLX_DIR = lib/MLX42
 MLX_LIB = $(MLX_DIR)/libmlx42.a -L"/Users/alafdili/.brew/opt/glfw/lib/" -lglfw \
 		-framework Cocoa -framework OpenGL -framework IOKit
 
-M_HEADERS = -I. -Ilib/my_lib -Ilib/MLX42/include/MLX42
+M_HEADERS = -Imandatory -Ilib/my_lib -Ilib/MLX42/include/MLX42
 B_HEADERS = -Ibonus -Ilib/my_lib -Ilib/MLX42/include/MLX42
 
 M_SRC = $(M_DIR)/free_mem.c $(M_DIR)/err_alert.c $(M_DIR)/so_long.c $(M_DIR)/parse_char.c $(M_DIR)/parse_walls.c \
@@ -33,7 +33,7 @@ all:$(NAME)
 $(B_DIR)/%.o: $(B_DIR)/%.c bonus/so_long_bonus.h
 	$(COMPILE) $(FLAGS) $(B_HEADERS) -o $@ -c $<
 
-$(M_DIR)/%.o:$(M_DIR)/%.c so_long.h
+$(M_DIR)/%.o:$(M_DIR)/%.c mandatory/so_long.h
 	$(COMPILE) $(FLAGS) $(M_HEADERS) -o $@ -c $<
 
 
