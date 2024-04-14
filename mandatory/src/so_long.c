@@ -43,5 +43,5 @@ int	main(int argc, char *argv[])
 	window_hundeler(&list);
 	_free(list.map.map, 'm');
 	mlx_terminate(list.mlx);
-	return (0);
+	exit(0);
 }
