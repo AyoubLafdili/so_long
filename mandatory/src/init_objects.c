@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:38:40 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:41:10 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:51:39 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ void	first_check(t_element check_txr)
 		if (check_txr.txr[c] == NULL)
 		{
 			c = 0;
-			while (c < 14)
+			while (c < 12)
 			{
-				mlx_delete_texture(check_txr.txr[c]);
+				if (check_txr.txr[c])
+					mlx_delete_texture(check_txr.txr[c]);
 				c++;
 			}
 			mlx_terminate(check_txr.mlx);

@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:35:18 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:49:52 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:01:46 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	first_check(t_element check_txr)
 			c = 0;
 			while (c < 14)
 			{
+				if (check_txr.txr[c])
 				mlx_delete_texture(check_txr.txr[c]);
 				c++;
 			}

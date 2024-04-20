@@ -8,7 +8,7 @@ MLX_DIR = lib/MLX42
 
 MY_LIB = -L$(LIB_DIR) -lft
 MLX_LIB = -L$(MLX_DIR) -lmlx42 -L"/Users/alafdili/.brew/opt/glfw/lib/" -lglfw \
-		-framework Cocoa -framework OpenGL -framework IOKit
+		
 
 INCLUDE = -Ilib/libft -Ilib/MLX42/include/MLX42
 M_HEADERS = -Imandatory $(INCLUDE)
