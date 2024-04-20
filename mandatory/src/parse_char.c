@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:03:19 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:35:10 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:43:53 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*check_valid_char(t_element *c_list, char *to_join, int fd)
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != 'P' && line[i] != 'E' && line[i] != 'C'
-			&& line[i] != '0' && line[i] != '1' && line[i] != 'I')
+			&& line[i] != '0' && line[i] != '1')
 			avoid_norm(fd, (t_norm){line, &to_join, "Unexpected Chars", 'p'});
 		else
 		{
@@ -55,7 +55,7 @@ char	*check_valid_char(t_element *c_list, char *to_join, int fd)
 		avoid_norm(fd, (t_norm){line, &to_join, "Adjust Shape!", 'p'});
 	to_join = ft_strjoin(to_join, line);
 	if (!to_join)
-		avoid_norm(fd, (t_norm){line, &to_join, "Joining Failed!", 'p'});
+		avoid_norm(fd, (t_norm){line, NULL, "Joining Failed!", 'p'});
 	free(line);
 	return (to_join);
 }
@@ -82,7 +82,7 @@ char	*map_parsing(char *map_name, t_element *elem)
 	}
 	if (elem->flags.e_flag != 1 || elem->flags.p_flag != 1
 		|| elem->flags.c_flag == 0)
-		avoid_norm(fd, (t_norm){NULL, NULL, "Essential Chars Missing!", '0'});
+		avoid_norm(fd, (t_norm){j_lines, NULL, "Chars Missing!", '0'});
 	if (j_lines[((elem->map.map_x + 1) * elem->map.map_y) - 1] == '\n')
 		avoid_norm(fd, (t_norm){j_lines, NULL, "Unexpected Chars", '0'});
 	close(fd);

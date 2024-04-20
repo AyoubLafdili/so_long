@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:46:09 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:32:26 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define SO_LONG_H
 
 # include "libft.h"
-# include <stdio.h> 
-# include <unistd.h>
-# include <stdlib.h>
 # include <fcntl.h>
 # include <MLX42.h>
 
@@ -82,7 +79,6 @@ typedef struct s_elements
 	t_flags			flags;
 	t_player		crd;
 	t_map			map;
-	int				pdr;
 }	t_element;
 
 typedef struct s_norm
@@ -93,18 +89,18 @@ typedef struct s_norm
 	char	flag;
 }	t_norm;
 
+char	*map_parsing(char *map_name, t_element *elem);
+int		check_collectible(char **map);
+int		main(int argc, char *argv[]);
+int		strlen_char(char *s);
 void	mlx_failure(t_element to_free, int flag);
 void	err_alert(char *str, char **in_Line_map, char *msg, char flag);
-char	*map_parsing(char *map_name, t_element *elem);
 void	enclosed_walls(char *in_line_map, t_map *list);
 void	move_player(mlx_key_data_t keydata, void *param);
 void	window_hundeler(t_element *list);
 void	put_image(t_element obj, mlx_t *mlx, int f);
 void	init_obj(t_element *list);
 void	check_valid_path(t_element *list);
-int		check_collectible(char **map);
-int		main(int argc, char *argv[]);
 void	_free(char **to_free, char type);
-size_t	strlen_char(char *s);
 
 #endif

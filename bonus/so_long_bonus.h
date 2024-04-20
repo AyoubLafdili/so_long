@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:39:43 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:53:00 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:42:48 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define SO_LONG_BONUS_H
 
 # include "libft.h"
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>  
 # include <fcntl.h>
 # include <MLX42.h>
 
@@ -24,19 +21,24 @@
 # define OPENED_DOOR "textures/opened_door.png"
 # define CLOSED_DOOR "textures/closed_door.png"
 # define STAGE_ONE "textures/stage_one.png"
-# define STAGE_TWO "textures/stage_two.png"     
+# define STAGE_TWO "textures/stage_two.png" 
+
 //Player:
 # define PLAYER "textures/player.png"
 # define PLAYER_UP "textures/forward.png"
 # define PLAYER_LEFT "textures/left.png"
-# define PLAYER_RIGHT "textures/right.png"  
+# define PLAYER_RIGHT "textures/right.png" 
+
 //Walls:
-# define CORNER_WALL "textures/c_wall.png"  
+# define CORNER_WALL "textures/c_wall.png"   
 # define NESTED "textures/nested.png"
+
 //Floor:
 # define FLOOR "textures/floor.png"
+
 //Enemy:
 # define ENEMY "textures/enemy.png"
+
 //Other:
 # define COLLECTEBLE "textures/collectible.png"  
 # define BANNER "textures/banner.png"
@@ -113,11 +115,13 @@ typedef struct s_elements
 	char			*c_str;
 }	t_element;
 
+char	*map_parsing(char *map_name, t_element *elem);
+int		add_to_list(t_enemy **head, int ix, int iy);
+int		strlen_char(char *s);
+int		check_collectible(char **map);
+int		main(int argc, char *argv[]);
 void	mlx_failure(t_element to_free, char *error_msg, int flag);
 void	err_alert(char *str, char **in_Line_map, char *msg, char flag);
-char	*map_parsing(char *map_name, t_element *elem);
-void	enclosed_walls(char *in_line_map, t_element *list);
-int		add_to_list(t_enemy **head, int ix, int iy);
 void	move_player(mlx_key_data_t keydata, void *param);
 void	window_hundeler(t_element *list);
 void	put_image(t_element obj);
@@ -125,11 +129,9 @@ void	ft_terminate(t_element param, char *end_msg);
 void	list_init(t_element *init);
 void	init_obj(t_element *list);
 void	check_valid_path(t_element *list);
-int		check_collectible(char **map);
-int		main(int argc, char *argv[]);
+void	enclosed_walls(char *in_line_map, t_element *list);
 void	string_to_window(t_element *c_vars);
 void	list_clear(t_enemy *list);
 void	_free(char **to_free, char type);
-size_t	strlen_char(char *s);
 
 #endif

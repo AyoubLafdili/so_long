@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:29:43 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 02:59:47 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:49:51 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	slen = ft_strlen(s2);
 	constr = (char *) malloc((flen + slen + 1) * sizeof(char));
 	if (constr == NULL)
-		return (NULL);
+		return (free((void *)s1), NULL);
 	ft_strlcpy (constr, s1, flen + 1);
 	ft_strlcat (constr, s2, (flen + slen + 1));
 	free((char *)s1);

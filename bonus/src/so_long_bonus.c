@@ -12,6 +12,11 @@
 
 #include "so_long_bonus.h"
 
+void	fun(void)
+{
+	system("leaks so_long");
+}
+
 void	check_map_name(char *map_name)
 {
 	int	name_len;
@@ -33,6 +38,7 @@ int	main(int argc, char *argv[])
 	t_element	list;
 	char		*joined_lines;
 
+	atexit(fun);
 	ft_memset(&list, 0, sizeof(t_element));
 	if (argc != 2)
 		err_alert(NULL, NULL, "Review Your Input Arguments!", '0');

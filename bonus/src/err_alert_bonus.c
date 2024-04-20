@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:34:02 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/09 03:10:37 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:12:53 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	err_alert(char *str, char **other, char *msg, char flag)
 	}
 	if (flag == 'p')
 	{
-		printf("done\n");
-		if (*other)
+		if (other && *other)
 			_free(other, 'p');
 	}
 	ft_putendl_fd("Error", 1);
