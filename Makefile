@@ -37,15 +37,11 @@ B_SRC = $(B_DIR)/check_collectible_bonus.c $(B_DIR)/display_images_bonus.c \
 M_OBJ = $(M_SRC:.c=.o)
 B_OBJ = $(B_SRC:.c=.o)
 
-all:$(MLX_DIR) $(NAME)
+all: $(MLX_DIR) $(NAME)
 
 $(MLX_DIR):
-	if [ -e build/libmlx42.a ]; then \
-		@echo "\033[1;32mlibmlx42.a exists\033[1;m"; \
-	else \
-		echo "\033[1;32mbuilding mlx lib ...\033[1;m"; \
-		cd lib/MLX42; cmake -B build; make -C build; \
-	fi
+		@echo "\033[1;32mbuilding mlx lib ...\033[1;m"
+		@cd lib/MLX42; cmake -B build; make -C build
 
 $(B_DIR)/%.o: $(B_DIR)/%.c bonus/so_long_bonus.h
 	$(COMPILE) $(FLAGS) $(B_HEADERS) -o $@ -c $<

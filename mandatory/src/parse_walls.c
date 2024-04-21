@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:03:35 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 15:45:26 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/21 15:52:41 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_width(char **map, char *in_line_map, int y_len, int x_len)
 			index++;
 	}
 }
-
+   
 void	enclosed_walls(char *in_line_map, t_map *list)
 {
 	int	i;
