@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:00 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/21 15:31:14 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:48:16 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include <fcntl.h>
-# include <MLX42.h>
+# include "MLX42.h"
 
 # define OPENED_DOOR "textures/opened_door.png"
 # define CLOSED_DOOR "textures/closed_door.png"

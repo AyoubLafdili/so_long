@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:43:26 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 16:51:15 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:21:11 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_collectible(char **map)
 	while (map[y])
 	{
 		x = 0;
-		while (map[y][x] != '\n' && map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'C')
 				return (1);

@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:36:16 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 18:38:32 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:28:09 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	take_action(t_element *vars, t_enemy *_enemy, int dir, mlx_t *mlx)
 		|| vars->map.map[iy][dir] == 'C')
 		return ;
 	else if (vars->map.map[iy][dir] == 'P')
-		ft_terminate(*vars, "\033[1;31mYOU LOSE\033[1;0m");
+		ft_terminate(*vars, "\033[1;41mYOU LOSE\033[1;0m");
 	else if (vars->map.map[iy][dir] == '0')
 	{
 		if (mlx_image_to_window(mlx, vars->img[FL], win_x, win_y) == -1)

@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:34:02 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 15:12:53 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/21 22:25:45 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	err_alert(char *str, char **other, char *msg, char flag)
 		if (other && *other)
 			_free(other, 'p');
 	}
-	ft_putendl_fd("Error", 1);
-	ft_putendl_fd(msg, 1);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(msg, 2);
 	exit(1);
 }

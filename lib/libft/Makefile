@@ -30,3 +30,5 @@ fclean: clean
 	$(REMOVE) $(NAME)
 
 re:  fclean all
+
+.PHONY: clean

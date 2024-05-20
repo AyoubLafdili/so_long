@@ -6,7 +6,7 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:35:54 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 18:33:29 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:27:41 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ void	move_hundler(t_element *p, int y, int x)
 	{
 		++p->crd.moves;
 		string_to_window(p);
-		ft_terminate(*p, "\033[1;32mYOU WIN\033[1;0m");
+		ft_terminate(*p, "\033[1;42mYOU WIN\033[1;0m");
 	}
 	else if (p->map.map[y][x] == 'I')
-		ft_terminate(*p, "\033[1;31mYOU LOSE\033[1;0m");
+		ft_terminate(*p, "\033[1;41mYOU LOSE\033[1;0m");
 }
 
 void	check_mov_action(t_element *action, char dir)

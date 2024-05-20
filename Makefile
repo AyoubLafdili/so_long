@@ -10,13 +10,12 @@ MY_LIB = -L$(LIB_DIR) -lft
 MLX_LIB = -L$(MLX_DIR) -lmlx42 -L"/Users/alafdili/.brew/opt/glfw/lib/" -lglfw \
 		
 
-INCLUDE = -Ilib/libft -Ilib/MLX42/include/MLX42
+INCLUDE = -I$(LIB_DIR) -Ilib/MLX42/include/MLX42
 M_HEADERS = -Imandatory $(INCLUDE)
 B_HEADERS = -Ibonus $(INCLUDE)
 
 COMPILE = cc
 FLAGS = -Wall -Wextra -Werror
-
 
 M_SRC = $(M_DIR)/parse_char.c $(M_DIR)/parse_walls.c $(M_DIR)/window_hundler.c \
 		$(M_DIR)/check_map_path.c $(M_DIR)/strlen_char.c $(M_DIR)/mlx_failure.c \
@@ -37,28 +36,29 @@ B_SRC = $(B_DIR)/check_collectible_bonus.c $(B_DIR)/display_images_bonus.c \
 M_OBJ = $(M_SRC:.c=.o)
 B_OBJ = $(B_SRC:.c=.o)
 
-all: $(MLX_DIR) $(NAME)
+all: $(LIB_DIR) $(MLX_DIR) $(NAME)
 
 $(MLX_DIR):
-		@echo "\033[1;32mbuilding mlx lib ...\033[1;m"
-		@cd lib/MLX42; cmake -B build; make -C build
+		@echo "\033[1;42mBUILDING MLX42 ...\033[1;m"
+		cd lib/MLX42; cmake -B build; make -C build
 
-$(B_DIR)/%.o: $(B_DIR)/%.c bonus/so_long_bonus.h
+$(LIB_DIR):
+	@echo "\033[1;42mBUILDING LIBFT ...\033[1;m"
+	make -C $(LIB_DIR)
+$(B_DIR)/%.o: $(B_DIR)/%.c bonus/so_long_bonus.h 
 	$(COMPILE) $(FLAGS) $(B_HEADERS) -o $@ -c $<
 
-$(M_DIR)/%.o:$(M_DIR)/%.c mandatory/so_long.h
+$(M_DIR)/%.o:$(M_DIR)/%.c mandatory/so_long.h 
 	$(COMPILE) $(FLAGS) $(M_HEADERS) -o $@ -c $<
 
 
-$(B_NAME): $(B_OBJ)
-	make -C $(LIB_DIR)
+$(B_NAME): $(B_OBJ) $(LIB_DIR)/libft.a
 	$(COMPILE) $(FLAGS) -o $(B_NAME) $(B_OBJ) $(MY_LIB) $(MLX_LIB)
 
-$(NAME):$(M_OBJ)
-	make -C $(LIB_DIR)
+$(NAME):$(M_OBJ) $(LIB_DIR)/libft.a
 	$(COMPILE) $(FLAGS) -o $(NAME) $(M_OBJ) $(MY_LIB) $(MLX_LIB)
 
-bonus: $(B_NAME)
+bonus: $(LIB_DIR) $(MLX_DIR) $(B_NAME)
 
 clean:
 	make -C $(LIB_DIR) clean
@@ -69,3 +69,5 @@ fclean: clean
 	rm -rf $(NAME) $(B_NAME)
 
 re: fclean all
+
+.PHONY: $(LIB_DIR) clean

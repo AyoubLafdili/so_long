@@ -6,16 +6,11 @@
 /*   By: alafdili <alafdili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:01:36 by alafdili          #+#    #+#             */
-/*   Updated: 2024/04/20 14:50:25 by alafdili         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:32:06 by alafdili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	fun(void)
-{
-	system("leaks so_long");
-}
 
 void	check_map_name(char *map_name)
 {
@@ -38,7 +33,6 @@ int	main(int argc, char *argv[])
 	t_element	list;
 	char		*joined_lines;
 
-	atexit(fun);
 	ft_memset(&list, 0, sizeof(t_element));
 	if (argc != 2)
 		err_alert(NULL, NULL, "Review Your Input Arguments!", '0');

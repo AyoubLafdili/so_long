@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/alafdili/Desktop/copy_lib",
-      "program": "/Users/alafdili/Desktop/copy_lib/build/Debug/outDebug"
+      "cwd": "/Users/alafdili/so_long/bonus/src",
+      "program": "/Users/alafdili/so_long/bonus/src/build/Debug/outDebug"
     }
   ]
 }
